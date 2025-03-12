@@ -7,12 +7,12 @@ export default function Logo(){
     return (
         <div className="w-full flex items-center justify-between p-3 fixed  z-50 top-0 bg-black/80 bg-blur-4xl">
             <h2 className="font-bold flex items-center text-3xl  text-yellow">
-                <Image 
+                {/* <Image 
                src='/camera.png'
                alt='camera'
                width={32} 
-               height={32} />
-               Olalifestyle 
+               height={32} /> */}
+               #Olalifestyle 
                </h2>
             
             <div className='flex items-center gap-5'>
