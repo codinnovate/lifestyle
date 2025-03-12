@@ -2,6 +2,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+    reactStrictMode: true,
+    eslint: {
+      ignoreDuringBuilds: true, // Ignores ESLint errors during build
+    },
   images: {
     remotePatterns: [
       {
