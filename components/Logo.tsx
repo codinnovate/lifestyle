@@ -1,9 +1,33 @@
 'use client';
 
+import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useState } from "react";
 
+
+export const navItems = [
+    {
+        label: 'Home',
+        href: '/',
+    },
+    {
+        label: 'About',
+        href: '/about',
+    },
+    {
+        label: 'Services',
+        href: '/services',
+        icon: Bars2Icon,
+        active: false
+    },
+    {
+        label: 'Contact',
+        href: '/contact',
+    }
+]
 
 export default function Logo(){
+    const [show, setShow] = useState(false)
     return (
         <div className="w-full flex items-center justify-between p-3 fixed  z-50 top-0 bg-black/80 bg-blur-4xl">
             <h2 className="font-bold flex items-center text-3xl  text-yellow">
@@ -29,6 +53,18 @@ export default function Logo(){
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#fff" fill="none">
                 <path d="M3 21L10.5484 13.4516M21 3L13.4516 10.5484M13.4516 10.5484L8 3H3L10.5484 13.4516M13.4516 10.5484L21 21H16L10.5484 13.4516" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
+            </button>
+             </div>
+             <div className='flex items-center gap-5'>
+            <button
+             className="bg-blur-3xl rounded-full transition-all bg-[#0d0d0d]"
+             onClick={() => setShow(!show)}
+            >
+            {show? 
+            <XMarkIcon className="w-10 h-10  text-white"/>
+            :
+            <Bars2Icon className="w-10 h-10 text-white"/>
+            }
             </button>
              </div>
             
