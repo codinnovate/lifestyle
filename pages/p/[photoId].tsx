@@ -32,31 +32,43 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const results = await getResults();
-
-  let reducedResults: ImageProps[] = [];
-  let i = 0;
-  for (let result of results.resources) {
-    reducedResults.push({
-      id: i,
-      height: result.height,
-      width: result.width,
-      public_id: result.public_id,
-      format: result.format,
-    });
-    i++;
+  if (!results) {
+    return {
+      notFound: true,
+    };
   }
 
-  const currentPhoto = reducedResults.find(
-    (img) => img.id === Number(context.params.photoId),
-  );
+  let reducedResults: ImageProps[] = results.resources.map((result, i) => ({
+    id: i,
+    height: result?.height,
+    width: result?.width,
+    public_id: result.public_id,
+    format: result.format,
+  }));
+
+  const photoId = Number(context.params?.photoId);
+  if (isNaN(photoId)) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const currentPhoto = reducedResults.find((img) => img.id === photoId);
+  if (!currentPhoto) {
+    return {
+      notFound: true,
+    };
+  }
+
   currentPhoto.blurDataUrl = await getBase64ImageUrl(currentPhoto);
 
   return {
     props: {
-      currentPhoto: currentPhoto,
+      currentPhoto,
     },
   };
 };
+
 
 export async function getStaticPaths() {
   const results = await cloudinary.v2.search
