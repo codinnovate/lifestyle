@@ -2,6 +2,7 @@
 
 import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 
@@ -11,25 +12,36 @@ export const navItems = [
         href: '/',
     },
     {
-        label: 'About',
-        href: '/about',
+        label: 'Beach Vibes',
+        href: '/beach-pics',
     },
     {
-        label: 'Services',
-        href: '/services',
-        icon: Bars2Icon,
-        active: false
+        label: 'Luxury Men',
+        href: '/luxury-men',
     },
     {
-        label: 'Contact',
-        href: '/contact',
+        label: 'Luxury Female',
+        href: '/luxury-female',
+    },
+    {
+        label: 'Dinner',
+        href: '/dinner-pics',
+    },
+    {
+        label: 'Concert captures',
+        href: '/concert-pics',
+    },
+    {
+        label: 'Studio Shoot',
+        href: '/studio-work',
     }
 ]
 
 export default function Logo(){
     const [show, setShow] = useState(false)
     return (
-        <div className="w-full flex items-center justify-between p-3 fixed  z-50 top-0 bg-black/80 bg-blur-4xl">
+        <div className="flex flex-col ">
+        <div className="w-full flex items-center justify-between p-3 sticky bg-black/80 bg-blur-4xl">
             <h2 className="font-bold flex items-center text-3xl  text-yellow">
                 {/* <Image 
                src='/camera.png'
@@ -39,6 +51,7 @@ export default function Logo(){
                #Olalifestyle 
                </h2>
             
+               
             <div className='flex items-center gap-5'>
             <button
              className="bg-blur-3xl hover:bg-black/80 rounded-full transition-all delay-300 "
@@ -54,20 +67,23 @@ export default function Logo(){
                 <path d="M3 21L10.5484 13.4516M21 3L13.4516 10.5484M13.4516 10.5484L8 3H3L10.5484 13.4516M13.4516 10.5484L21 21H16L10.5484 13.4516" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             </button>
-             </div>
-             <div className='flex items-center gap-5'>
-            <button
-             className="bg-blur-3xl rounded-full transition-all bg-[#0d0d0d]"
-             onClick={() => setShow(!show)}
-            >
-            {show? 
-            <XMarkIcon className="w-10 h-10  text-white"/>
-            :
-            <Bars2Icon className="w-10 h-10 text-white"/>
-            }
-            </button>
-             </div>
+            </div>
             
+
+    
+            
+        </div>
+        <nav className="flex gap-4 p-2 flex-wrap sticky top-0 right-0 left-0 text-white items-center justify-center  w-full ">
+                    {navItems.map(({ label, href }) => (
+                        <Link
+                         href={href} 
+                         key={label} 
+                         className="leading-6  hover:text-yellow hover:underline transition-all duration-300 uppercase text-sm md:text-xl !font-normal ">
+                            <h1>{label}</h1>
+                        </Link>
+
+                    ))}
+        </nav>
         </div>
     )
 }

@@ -11,7 +11,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        pathname: "/himago/image/upload/**", // Adjust this if needed
+        pathname: "/dpdd6ylv1/image/upload/**", // Adjust this if needed
       },
     ],
   },

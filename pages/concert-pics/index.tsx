@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
-import Modal from "../components/Modal";
-import cloudinary from "../utils/cloudinary";
-import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
-import type { ImageProps } from "../utils/types";
-import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
+import { useLastViewedPhoto } from "../../utils/useLastViewedPhoto";
+import Modal from "../../components/Modal";
+import Hero from "../../components/Hero";
+import Footer from "../../components/Footer";
+import cloudinary from "../../utils/cloudinary";
+import getBase64ImageUrl from "../../utils/generateBlurPlaceholder";
+import { ImageProps } from "../../utils/types";
+import HeroComp from "../../components/HeroComp";
 
 const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const router = useRouter();
@@ -47,7 +48,9 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             }}
           />
         )}
-        <Hero />
+        <HeroComp
+         text='My Concert Captures'
+        />
         <div className="columns-1 p-4 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
@@ -72,7 +75,6 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                   (max-width: 1536px) 33vw,
                   25vw"
               />
-              
             </Link>
           ))}
         </div>
@@ -86,7 +88,7 @@ export default Home;
 
 export async function getStaticProps() {
   const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
+    .expression(`folder:${process.env.CLOUDINARY_FOLDER_CONCERT}/*`)
     .sort_by("public_id", "desc")
     .max_results(400)
     .execute();
