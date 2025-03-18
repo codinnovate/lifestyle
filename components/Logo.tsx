@@ -12,10 +12,6 @@ export const navItems = [
         href: '/',
     },
     {
-        label: 'Beach Vibes',
-        href: '/beach-pics',
-    },
-    {
         label: 'Luxury Men',
         href: '/luxury-men',
     },
@@ -24,12 +20,16 @@ export const navItems = [
         href: '/luxury-female',
     },
     {
-        label: 'Dinner',
-        href: '/dinner-pics',
-    },
-    {
         label: 'Concert captures',
         href: '/concert-pics',
+    },
+    {
+        label: 'Beach Vibes',
+        href: '/beach-pics',
+    },
+    {
+        label: 'Dinner',
+        href: '/dinner-pics',
     },
     {
         label: 'Studio Shoot',
