@@ -86,7 +86,7 @@ export default BeachPics;
 
 export async function getStaticProps() {
   const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.CLOUDINARY_FOLDER_BEACH}/*`)
+    .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER_BEACH}/*`)
     .sort_by("public_id", "desc")
     .max_results(400)
     .execute();
