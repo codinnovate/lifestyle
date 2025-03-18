@@ -88,7 +88,7 @@ export default Home;
 
 export async function getStaticProps() {
   const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER_CONCERT}/*`)
+    .expression(`folder:ola/concert/*`)
     .sort_by("public_id", "desc")
     .max_results(30)
     .execute();
